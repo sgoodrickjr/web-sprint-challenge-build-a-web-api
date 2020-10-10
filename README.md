@@ -66,7 +66,7 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Understand and explain the use of Middleware?
 
--Middleware are functions written to solve problems between a request and a resolution of another function. They are dynamic and can return different things unlike higher order functions.
+-Middleware are functions written to solve problems between a request and a response of another function. They are dynamic and can return different things unlike higher order functions.
 
 1. The basic principles of the REST architectural style.
 
@@ -90,9 +90,9 @@ You are expected to be able to answer questions in these areas. Your responses c
 - [x ] Create a forked copy of this project
 - [x ] Add your team lead as collaborator on Github
 - [x ] Clone your OWN version of the repository (Not Lambda's by mistake!)
-- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
-- [ ] Push commits: git push origin `<firstName-lastName>`
+- [x ] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [x ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
+- [x ] Push commits: git push origin `<firstName-lastName>`
 
 ### Task 2: Project Requirements
 
@@ -100,9 +100,9 @@ Your finished project must include all of the following requirements:
 
 #### NPM Scripts
 
-- [ ] An _npm script_ named _"server"_ that uses `nodemon`to run the API server.
-- [ ] Use _nodemon_ as a development time dependency only that is not deployed to production.
-- [ ] An _npm script_ named _"start"_ that uses `node` to run the API server.
+- [x ] An _npm script_ named _"server"_ that uses `nodemon`to run the API server.
+- [x ] Use _nodemon_ as a development time dependency only that is not deployed to production.
+- [x ] An _npm script_ named _"start"_ that uses `node` to run the API server.
 
 #### Build an API
 
