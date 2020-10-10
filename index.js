@@ -9,6 +9,10 @@ server.use("/api/actions", actionRouter);
 
 const PORT = 5000;
 
+server.get("/", (req, res) => {
+    res.send('Hello world')
+})
+
 server.listen(PORT, () => {
     console.log(`listening on port ${PORT}...`);
 });
