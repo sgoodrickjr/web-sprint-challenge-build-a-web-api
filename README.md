@@ -61,10 +61,25 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
+
+-One of the core features of Node.js is asychronous programming. You can use async and await for promises. Express allows for devs to not have to write so much boilerplate code and makes writing middleware programs a lot easier.
+
 1. Understand and explain the use of Middleware?
+
+-Middleware are functions written to solve problems between a request and a resolution of another function. They are dynamic and can return different things unlike higher order functions.
+
 1. The basic principles of the REST architectural style.
+
+-REST stands for representational state transfer. It is server-side architecture, stateless meaning it should stand on its own and order should not matter, it is cacheable, layered meaning there are things like authentication or DNS servers between the client and server, and it has code on demand meaning it can pull from an API.
+
 1. Understand and explain the use of Express Routers.
+
+-they are needed to add endpoints to a user resource and minimize extra lines of code. 
+
 1. Describe tooling used to manually test the correctness of an API.
+
+-Insomnia and Postman are programs that allow you to put in the URL for an API, and test each endpoint such as GET, POST, PUT, PATCH, and DELETE. You can even insert your own code to manually test such as adding a JSON object, sending it to the API, and seeing right away the visual response.
+
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
@@ -72,9 +87,9 @@ You are expected to be able to answer questions in these areas. Your responses c
 
 ### Task 1: Project Set Up
 
-- [ ] Create a forked copy of this project
-- [ ] Add your team lead as collaborator on Github
-- [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
+- [x ] Create a forked copy of this project
+- [x ] Add your team lead as collaborator on Github
+- [x ] Clone your OWN version of the repository (Not Lambda's by mistake!)
 - [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
 - [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
 - [ ] Push commits: git push origin `<firstName-lastName>`
