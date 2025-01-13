@@ -25,7 +25,7 @@ function get(id) {
       });
   } else {
     return query.then((actions) => {
-      return actions.map((action) => mappers.actionToBody(action));
+      return actions.map((action) => mappers.actionToBody(action)) || [];  // Add empty array fallback
     });
   }
 }

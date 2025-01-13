@@ -16,11 +16,11 @@ async function validateActionId(req, res, next) {
 }
 
 async function validateAction(req, res, next) {
-  const { project_id, description, notes } = req.body
+  const { project_id, description, notes, completed } = req.body
   
-  if (!project_id || !description || !notes) {
+  if (!project_id || !description || !notes || completed === undefined) {
     res.status(400).json({ 
-      message: 'project_id, description and notes required' 
+      message: 'project_id, description, notes and completed status required' 
     })
   } else {
     try {

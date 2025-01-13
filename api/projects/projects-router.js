@@ -16,22 +16,40 @@ router.get('/:id', validateProjectId, (req, res) => {
 })
 
 router.post('/', validateProject, async (req, res, next) => {
-  try {
-    const project = await Project.insert(req.body)
-    res.status(201).json(project)
-  } catch (err) {
-    next(err)
-  }
-})
+    try {
+      const { name, description, completed } = req.body
+      const project = await Project.insert({
+        name,
+        description,
+        completed: completed || false
+      })
+      if (project) {
+        res.status(201).json(project)
+      } else {
+        res.status(400).json({ message: 'invalid project data' })
+      }
+    } catch (err) {
+      next(err)
+    }
+  })
 
 router.put('/:id', validateProjectId, validateProject, async (req, res, next) => {
-  try {
-    const project = await Project.update(req.params.id, req.body)
-    res.json(project)
-  } catch (err) {
-    next(err)
-  }
-})
+    try {
+      const { name, description, completed } = req.body
+      const project = await Project.update(req.params.id, {
+        name,
+        description,
+        completed
+      })
+      if (project) {
+        res.json(project)
+      } else {
+        res.status(404).json({ message: 'project not found' })
+      }
+    } catch (err) {
+      next(err)
+    }
+  })
 
 router.delete('/:id', validateProjectId, async (req, res, next) => {
   try {

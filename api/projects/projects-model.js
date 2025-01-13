@@ -15,15 +15,12 @@ function get(id) {
 
   if (id) {
     query.where("p.id", id).first();
-
-    const promises = [query, getProjectActions(id)]; // [ projects, actions ]
+    const promises = [query, getProjectActions(id)];
 
     return Promise.all(promises).then(function(results) {
       let [project, actions] = results;
-
       if (project) {
         project.actions = actions;
-
         return mappers.projectToBody(project);
       } else {
         return null;
@@ -31,7 +28,7 @@ function get(id) {
     });
   } else {
     return query.then(projects => {
-      return projects.map(project => mappers.projectToBody(project));
+      return projects.map(project => mappers.projectToBody(project)) || []; // Add fallback to empty array
     });
   }
 }

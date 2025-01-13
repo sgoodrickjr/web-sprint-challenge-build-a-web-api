@@ -5,7 +5,7 @@ const { validateAction, validateActionId } = require('./actions-middleware')
 router.get('/', async (req, res, next) => {
   try {
     const actions = await Action.get()
-    res.json(actions)
+    res.json(actions || [])  // Ensure empty array
   } catch (err) {
     next(err)
   }
@@ -17,8 +17,18 @@ router.get('/:id', validateActionId, (req, res) => {
 
 router.post('/', validateAction, async (req, res, next) => {
   try {
-    const action = await Action.insert(req.body)
-    res.status(201).json(action)
+    const { project_id, description, notes, completed } = req.body
+    const action = await Action.insert({
+      project_id,
+      description,
+      notes,
+      completed: completed || false
+    })
+    if (action) {
+      res.status(201).json(action)
+    } else {
+      res.status(400).json({ message: 'invalid action data' })
+    }
   } catch (err) {
     next(err)
   }
@@ -26,8 +36,18 @@ router.post('/', validateAction, async (req, res, next) => {
 
 router.put('/:id', validateActionId, validateAction, async (req, res, next) => {
   try {
-    const action = await Action.update(req.params.id, req.body)
-    res.json(action)
+    const { project_id, description, notes, completed } = req.body
+    const action = await Action.update(req.params.id, {
+      project_id,
+      description,
+      notes,
+      completed
+    })
+    if (action) {
+      res.json(action)
+    } else {
+      res.status(404).json({ message: 'action not found' })
+    }
   } catch (err) {
     next(err)
   }
