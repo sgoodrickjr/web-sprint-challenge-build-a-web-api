@@ -15,15 +15,15 @@ async function validateProjectId(req, res, next) {
 }
 
 function validateProject(req, res, next) {
-  const { name, description, completed } = req.body
-  if (!name || !description || completed === undefined) {
-    res.status(400).json({ 
-      message: 'name, description and completed status required' 
-    })
-  } else {
-    next()
+    const { name, description, completed } = req.body
+    if (!name || !description || completed === undefined) {
+      res.status(400).json({ 
+        message: 'name, description and completed required' 
+      })
+    } else {
+      next()
+    }
   }
-}
 
 module.exports = {
   validateProjectId,

@@ -1,5 +1,4 @@
 const Action = require('./actions-model')
-const Project = require('../projects/projects-model')
 
 async function validateActionId(req, res, next) {
   try {
@@ -15,28 +14,16 @@ async function validateActionId(req, res, next) {
   }
 }
 
-async function validateAction(req, res, next) {
-  const { project_id, description, notes, completed } = req.body
-  
-  if (!project_id || !description || !notes || completed === undefined) {
-    res.status(400).json({ 
-      message: 'project_id, description, notes and completed status required' 
-    })
-  } else {
-    try {
-      const project = await Project.get(project_id)
-      if (!project) {
-        res.status(404).json({ 
-          message: 'project_id does not reference an existing project' 
-        })
-      } else {
-        next()
-      }
-    } catch (err) {
-      next(err)
+function validateAction(req, res, next) {
+    const { project_id, description, notes } = req.body
+    if (!project_id || !description || !notes) {
+      res.status(400).json({ 
+        message: 'project_id, description and notes required' 
+      })
+    } else {
+      next()
     }
   }
-}
 
 module.exports = {
   validateActionId,

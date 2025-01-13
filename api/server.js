@@ -1,9 +1,23 @@
-const express = require('express');
-const server = express();
+require('dotenv').config()
+const express = require('express')
+const helmet = require('helmet')
 
-// Configure your server here
-// Build your actions router in /api/actions/actions-router.js
-// Build your projects router in /api/projects/projects-router.js
-// Do NOT `server.listen()` inside this file!
+const projectsRouter = require('./projects/projects-router')  // Remove 'api/' from path
+const actionsRouter = require('./actions/actions-router')     // Remove 'api/' from path
 
-module.exports = server;
+const server = express()
+// const port = process.env.PORT || 9000
+
+server.use(helmet())
+server.use(express.json())
+
+server.use('/api/projects', projectsRouter)
+server.use('/api/actions', actionsRouter)
+
+server.use((err, req, res, next) => { // eslint-disable-line
+  res.status(500).json({
+    message: err.message
+  })
+})
+
+module.exports = server
